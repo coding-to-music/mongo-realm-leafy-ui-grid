@@ -12,14 +12,24 @@
             "city": "$city",
             "country": {"$country": {"full": true}}
         },
-        "emails": {
-            "$array": {
-                "of": {
-                    "address":"$email",
-                    "type": {"$choose": {"from": ["business", "private", "other"], "weights": [2, 1, 1]}}
-                },
-                "number": {"$integer": {"min": 0, "max": 3}}
-            }
+        "contact": {
+            "email": {
+                "$array": {
+                    "of": {
+                        "address":"$email",
+                        "type": {"$choose": {"from": ["business", "private", "other"], "weights": [2, 1, 1]}}
+                    },
+                    "number": {"$integer": {"min": 0, "max": 3}}
+                }
+            },
+            "phone": {
+                "$array": {
+                    "of": {
+                        "number": {"$phone": { "country": "fr", "mobile": true }},
+                        "type": {"$choose": {"from": ["business", "private", "other"], "weights": [2, 1, 1]}}
+                    }
+                }
+            }    
         }
     },
     "crmInformation": {
