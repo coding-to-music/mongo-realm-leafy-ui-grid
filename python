@@ -1,0 +1,4 @@
+yarn run v1.22.17
+$ /Users/philip.eschenbacher/Documents/Developer/mongodb_realm_grid/node_modules/.bin/mgeneratejs -n 1 fakeData/customerData.json json.tool
+{"customer":{"lastName":"Lambert","firstName":"Harriett","age":25,"birthdate":{"$date":"1986-05-29T22:16:11.754Z"},"profession":"Risk Analyst","mainAddress":{"street":"Depec Junction","zip":"54168","city":"Mupkatdav","country":"Antarctica"},"addresses":[],"emails":[]},"crmInformation":{"lastPhysicalContactDate":{"$date":"2004-10-04T08:30:04.802Z"},"totalPhysicalContactsLastYearPeriod":29,"lastVirtualContactDate":{"$date":"2018-05-27T15:54:09.195Z"},"totalVirtualContactsLastYearPeriod":41,"totalContactsYtd":19}}
+Done in 0.88s.

@@ -1,0 +1,63 @@
+{
+    "customer": {
+        "lastName": "$last",
+        "firstName": "$first",
+        "age": "$age",
+        "birthdate": "$birthday",
+        "profession": {"$profession": {"title": true}},
+        "address": {
+            "street": "$street",
+            "zip": "$zip",
+            "city": "$city",
+            "country": {"$country": {"full": true}}
+        },
+        "emails": {
+            "$array": {
+                "of": {
+                    "address":"$email",
+                    "type": {"$choose": {"from": ["business", "private", "other"], "weights": [2, 1, 1]}}
+                },
+                "number": {"$integer": {"min": 0, "max": 3}}
+            }
+        }
+    },
+    "crmInformation": {
+        "segmentation": {"$choose": {"from": ["non-customer", "low", "medium", "high", "ex-customer"], "weights": [1, 3, 2, 1, 1]}},
+        "lastPhysicalContactDate": {"$date": {"min": "2001-01-01", "max":"2021-10-31"}},
+        "totalPhysicalContactsLastYearPeriod": {"$integer": {"min": 0, "max": 50}},
+        "lastVirtualContactDate": {"$date": {"min": "2001-01-01", "max":"2021-10-31"}},
+        "totalVirtualContactsLastYearPeriod": {"$integer": {"min": 0, "max": 50}},
+        "totalContactsYtd": {"$integer": {"min": 0, "max": 100}}
+
+    },
+    "portfolio": {
+        "$array": {
+            "of": {
+                "name": {"$sentence": {"words": {"$integer": {"min": 0, "max": 5}}}},
+                "number": "$ssn",
+                "accounts": {
+                    "$array": {
+                        "of": {
+                            "number": "$guid",
+                            "type": {"$choose": {"from": ["account", "loan", "depot"], "weights": [2, 1, 1]}},
+                            "balance": {"$numberDecimal": {"min": -100000, "max": 999999}},
+                            "name": {"$sentence": {"words": {"$integer": {"min": 0, "max": 5}}}},
+                            "lastTransactions": {
+                                "$array": {
+                                    "of": {
+                                        "date": {"$date": {"min": "2001-01-01", "max":"2021-10-31"}},
+                                        "amount": {"$numberDecimal": {"min": -99999, "max": 99999}},
+                                        "text": {"$sentence": {"words": {"$integer": {"min": 0, "max": 10}}}}
+                                    },
+                                    "number": 20
+                                }
+                            }
+                        },
+                        "number": {"$integer": {"min": 0, "max": 20}}
+                    } 
+                }
+            },
+            "number": {"$integer": {"min": 1, "max": 5}}
+        }
+    }
+}
