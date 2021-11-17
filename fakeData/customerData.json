@@ -2,6 +2,7 @@
     "customer": {
         "lastName": "$last",
         "firstName": "$first",
+        "consultantId": {"$integer": {"min": 1, "max": 1000}},
         "age": "$age",
         "birthdate": "$birthday",
         "profession": {"$profession": {"title": true}},
