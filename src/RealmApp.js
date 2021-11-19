@@ -16,14 +16,14 @@ export const useRealmApp = () => {
 export const RealmAppProvider = ({ appId, children }) => {
     const [app, setApp] = React.useState(new Realm.App(appId));
     React.useEffect(() => {
-        setApp(new Realm.app(appId));
+        setApp(new Realm.App(appId));
     }, [appId]);
 
     // Wrap the Realm.App object's user state with React state
     const [currentUser, setCurrentUser] = React.useState(app.currentUser);
 
     async function logIn(credentials) {
-        await app.logInd(credentials);
+        await app.logIn(credentials);
         // If successful, app.currentUser is the user that just logged in
         setCurrentUser(app.currentUser);
     }
