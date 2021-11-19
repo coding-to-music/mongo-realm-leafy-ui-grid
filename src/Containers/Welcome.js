@@ -1,12 +1,17 @@
 import React from "react";
+import Button from "@leafygreen-ui/button";
 import { useRealmApp } from "../RealmApp";
+import Container from "../Components/Container";
 
 const HelloWorld = () => {
     const app = useRealmApp();
-    console.log(app);
 
     return (
-        <h1>User: {app.currentUser?app.currentUser:"not logged in"}</h1>
+        <Container>
+            <h1>User: {app.currentUser.id ? `${app.currentUser.id} (${app.currentUser.providerType})` : "not logged in"}</h1>
+            <Button variant="primary" onClick={() => app.logOut()}>Logout</Button>
+        </Container>
+        
     )
 }
 
