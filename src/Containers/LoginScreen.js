@@ -12,14 +12,36 @@ const LoginScreen = () => {
     const app = useRealmApp();
     const [email, setEmail] = React.useState("philip@eschenbacher.ch");
     const [password, setPassword] = React.useState("Passw0rd");
+    const [error, setError] = React.useState({});
+    const [isLoggingIn, setIsLoggingIn] = React.useState(false);
 
     const handleLogin = async () => {
+        setIsLoggingIn(true);
+        setError((e) => ({ ...e, password: null }));
         try {
             await app.logIn(Realm.Credentials.emailPassword(email, password));
-        } catch (e) {
-            console.error("error loggin in");
+        } catch (err) {
+            handleAuthenticationError(err, setError)
         }
     } 
+
+    const handleAuthenticationError = (err, setError) => {
+        const { status, message } = parseAuthenticationError(err);
+        const errorType = message || status;
+        console.log(errorType);
+        switch (errorType) {
+            case "invalid username":
+                setError((prevErr) => ({ ...prevErr, email: "Invalid email address"}));
+                break;
+            case "invalid username/password":
+            case "invalid password":
+            case "401":
+                setError((err) => ({ ...err, password: "Incorrect password"}));
+                break;
+            default:
+                break;
+        }
+    }
 
     return (
         <Container>
@@ -32,6 +54,8 @@ const LoginScreen = () => {
                     label="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    errorMessage={error.email}
+                    state={error.email ? "error" : "none"}
                 />
             </LoginFormRow>
             <LoginFormRow>
@@ -40,6 +64,8 @@ const LoginScreen = () => {
                     label="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    errorMessage={error.password}
+                    state={error.password ? "error" : "none" }
                 />
             </LoginFormRow>            
             <Button variant="primary" onClick={() => handleLogin()}>Login</Button>
@@ -48,6 +74,16 @@ const LoginScreen = () => {
 }
 
 export default LoginScreen;
+
+function parseAuthenticationError(err) {
+    const parts = err.message.split(":");
+    const reason = parts[parts.length - 1].trimStart();
+    if (!reason) return { status: "", message: "" };
+    const reasonRegex = /(?<message>.+)\s\(status (?<status>[0-9][0-9][0-9])/;
+    const match = reason.match(reasonRegex);
+    const { status, message } = match?.groups ?? {};
+    return { status, message };
+}
 
 const LoginHeading = styled.h1`
   margin: 0;
