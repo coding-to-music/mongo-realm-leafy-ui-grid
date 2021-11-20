@@ -22,6 +22,13 @@ export const RealmAppProvider = ({ appId, children }) => {
     // Wrap the Realm.App object's user state with React state
     const [currentUser, setCurrentUser] = React.useState(app.currentUser);
 
+    async function logInJwt(credentials) {
+        const jwt = Realm.Credentials.jwt(credentials);
+        await app.logIn(jwt);
+        // If successful, app.currentUser is the user that just logged in
+        setCurrentUser(app.currentUser);
+    }
+
     async function logIn(credentials) {
         await app.logIn(credentials);
         // If successful, app.currentUser is the user that just logged in
@@ -36,7 +43,7 @@ export const RealmAppProvider = ({ appId, children }) => {
         setCurrentUser(app.currentUser);
     }
 
-    const wrapped = { ...app, currentUser, logIn, logOut };
+    const wrapped = { ...app, currentUser, logIn, logInJwt, logOut };
 
     return (
         <RealmAppContext.Provider value={wrapped}>

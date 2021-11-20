@@ -3,10 +3,14 @@ import * as Realm from "realm-web";
 import styled from "@emotion/styled";
 import TextInput from "@leafygreen-ui/text-input";
 import Button from "@leafygreen-ui/button";
-import validator from "validator";
+import { uiColors } from "@leafygreen-ui/palette";
+import { useMsal } from "@azure/msal-react";
 
 import { useRealmApp } from "../RealmApp";
 import Container from "../Components/Container";
+import Loading from "../Components/Loading";
+
+
 
 const LoginScreen = () => {
     const app = useRealmApp();
@@ -14,6 +18,7 @@ const LoginScreen = () => {
     const [password, setPassword] = React.useState("Passw0rd");
     const [error, setError] = React.useState({});
     const [isLoggingIn, setIsLoggingIn] = React.useState(false);
+    const { instance, accounts } = useMsal();
 
     const handleLogin = async () => {
         setIsLoggingIn(true);
@@ -22,8 +27,26 @@ const LoginScreen = () => {
             await app.logIn(Realm.Credentials.emailPassword(email, password));
         } catch (err) {
             handleAuthenticationError(err, setError)
+            setIsLoggingIn(false);
         }
-    } 
+    }
+    
+    const handleSSOLogin = async () => {
+        try {
+            //setIsLoggingIn(true);
+
+            let jwt = await instance.acquireTokenPopup({
+                scopes: [`${process.env.REACT_APP_APPID}/.default`],
+                account: accounts[0]
+            });
+    
+            jwt = await JSON.stringify(jwt.accessToken).slice(1,-1);
+            await app.logInJwt(jwt);
+        } catch (err) {
+            console.log(err);
+            handleAuthenticationError(err, setError);
+        }
+    }
 
     const handleAuthenticationError = (err, setError) => {
         const { status, message } = parseAuthenticationError(err);
@@ -45,30 +68,44 @@ const LoginScreen = () => {
 
     return (
         <Container>
-            <LoginFormRow>
-                <LoginHeading>Please identify</LoginHeading>
-            </LoginFormRow>
-            <LoginFormRow>
-                <TextInput 
-                    type="email" 
-                    label="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    errorMessage={error.email}
-                    state={error.email ? "error" : "none"}
-                />
-            </LoginFormRow>
-            <LoginFormRow>
-                <TextInput 
-                    type="password" 
-                    label="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    errorMessage={error.password}
-                    state={error.password ? "error" : "none" }
-                />
-            </LoginFormRow>            
-            <Button variant="primary" onClick={() => handleLogin()}>Login</Button>
+            {isLoggingIn ? (
+                <Loading />
+            ) : (
+                <>
+                <LoginFormRow>
+                    <LoginHeading>Please identify</LoginHeading>
+                </LoginFormRow>
+                <LoginFormRow>
+                    <TextInput 
+                        type="email" 
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        errorMessage={error.email}
+                        state={error.email ? "error" : "none"}
+                    />
+                </LoginFormRow>
+                <LoginFormRow>
+                    <TextInput 
+                        type="password" 
+                        label="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        errorMessage={error.password}
+                        state={error.password ? "error" : "none" }
+                    />
+                </LoginFormRow> 
+                <LoginFormRow>
+                    <Button variant="primary" onClick={() => handleLogin()}>Login</Button>
+                </LoginFormRow>           
+                
+                <LoginFormRow>
+                    <Button variant="primary" onClick={() => handleSSOLogin()}>SSO</Button>
+                </LoginFormRow>
+                
+
+                </>
+            )}
         </Container>
     )
 }
@@ -92,4 +129,22 @@ const LoginHeading = styled.h1`
 
 const LoginFormRow = styled.div`
   margin-bottom: 16px;
+`;
+
+const ToggleContainer = styled.div`
+  margin-top: 8px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+`;
+
+const ToggleText = styled.span`
+  line-height: 18px;
+`;
+
+const ToggleLink = styled.button`
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: ${uiColors.green.dark2};
 `;
