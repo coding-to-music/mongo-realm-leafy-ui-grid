@@ -39,9 +39,8 @@ export const createServerSideDatasource = ({ client }) => {
 
             client.query(query)
             .then(res => res.data.getGridData)
-            .then((data) => {
-                console.log({data});
-                params.successCallback(data)
+            .then(({ lastRow, rows }) => {
+                params.successCallback(rows, lastRow)
             })
             .catch(err => {
                 console.error(err);

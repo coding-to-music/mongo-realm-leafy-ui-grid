@@ -4,10 +4,21 @@ exports = async ({ startRow, endRow }) => {
   
   const agg = [];
 
-  agg.push({"$skip": startRow});
-  agg.push({"$limit": endRow-startRow});
+  agg.push({
+    $facet: {
+      rows: [{"$skip": startRow}, {"$limit": endRow-startRow}],
+      rowCount: [{$count: 'lastRow'}]
+    }
+  });
+
+  agg.push({
+    $project: {
+      rows: 1,
+      lastRow: {$arrayElemAt: ["$rowCount.lastRow", 0]}
+    }
+  })
   
-  return await collection.aggregate(agg).toArray();
+  return await collection.aggregate(agg).next();
 }
 
 /** 
