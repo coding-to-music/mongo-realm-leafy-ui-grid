@@ -2,9 +2,12 @@ exports = async ({ startRow, endRow }) => {
   const cluster = context.services.get("mongodb-atlas");
   const collection = cluster.db("mybank").collection("customerSingleviewFlat");
   
-  //deploy test
+  const agg = [];
+
+  agg.push({"$skip": startRow});
+  agg.push({"$limit": endRow-startRow});
   
-  return await collection.aggregate([{"$skip": startRow}, {"$limit": endRow-startRow}]).toArray();
+  return await collection.aggregate(agg).toArray();
 }
 
 /** 
