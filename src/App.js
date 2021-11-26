@@ -6,6 +6,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 
 import LoginScreen from "./Containers/LoginScreen";
 import HelloWorld from "./Containers/Welcome";
+import Grid from "./Containers/Grid";
 import { msalConfig } from "./lib/azure/authConfig";
 import RealmApolloProvider from "./lib/graphql/apolloClient";
 
@@ -24,7 +25,7 @@ const App = () => {
       <MsalProvider instance={msalInstance}>
         <RequireLoggedInUser>
           <RealmApolloProvider>
-            <HelloWorld />
+            <Grid />
           </RealmApolloProvider>
         </RequireLoggedInUser>
       </MsalProvider>
