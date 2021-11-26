@@ -1,7 +1,7 @@
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "ag-grid-enterprise";
 
 import GridOptions from './GridOptions';
@@ -35,7 +35,7 @@ const Grid = () => {
     return (
         <div         
             style={{ height: "calc(100vh - 250px)" }}
-            className="ag-theme-alpine-dark"
+            className="ag-theme-alpine"
         >
             <AgGridReact
                 rowData={rowData}
