@@ -1,0 +1,18 @@
+{
+    "collection": "customerSingleviewFlat",
+    "database": "mybank",
+    "roles": [
+        {
+            "name": "default",
+            "apply_when": {},
+            "fields": {
+                "rating": {}
+            },
+            "read": true,
+            "insert": true,
+            "delete": true,
+            "search": true,
+            "additional_fields": {}
+        }
+    ]
+}
