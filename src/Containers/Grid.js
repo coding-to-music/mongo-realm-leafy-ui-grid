@@ -1,5 +1,6 @@
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
+import Button from "@leafygreen-ui/button";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "ag-grid-enterprise";
@@ -7,12 +8,16 @@ import "ag-grid-enterprise";
 import GridOptions from './GridOptions';
 import ApolloClientWrapper from '../lib/graphql/ApolloClientWrapper';
 import { createServerSideDatasource } from "../lib/graphql/gridDatasource";
+import Container from "../Components/Container";
+import { useRealmApp } from "../RealmApp";
 
 const formatCurrency = (params) => {
     return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(params.value);
 }
 
 const Grid = ({ client }) => {
+    const app = useRealmApp();
+
     const columnDefs = [
         { field: "lastName"},
         { field: "firstName"},
@@ -33,6 +38,7 @@ const Grid = ({ client }) => {
     }
 
     return (
+        <>
         <div         
             style={{ height: "calc(100vh - 250px)" }}
             className="ag-theme-alpine"
@@ -42,6 +48,9 @@ const Grid = ({ client }) => {
                 onGridReady={onGridReady}
             />
         </div>
+        <h4>User: {app.currentUser.id ? `${app.currentUser.id} (${app.currentUser.providerType})` : "not logged in"}</h4>
+        <Button variant="primary" onClick={() => app.logOut()}>Logout</Button>
+        </>
     )
 }
 
