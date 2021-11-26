@@ -10,9 +10,15 @@ const defaultColDef = {
 }
 
 const rowSelection = "single";
+const rowModelType = "serverSide";
+const serverSideStoreType = "partial";
+const cacheBlockSize = 20;
 
 export default {
     columnTypes,
     defaultColDef,
-    rowSelection
+    rowSelection,
+    rowModelType,
+    serverSideStoreType,
+    cacheBlockSize
 }

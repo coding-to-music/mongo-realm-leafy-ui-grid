@@ -4,7 +4,7 @@ import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from "@apollo/c
 
 const createRealmApolloClient = (app) => {
     const link = new HttpLink({
-        uri: `https://eu-central-1.aws.realm.mongodb.com/api/client/v2.0/app/${app.appId}/graphql`,
+        uri: `https://eu-central-1.aws.realm.mongodb.com/api/client/v2.0/app/${app.id}/graphql`,
         fetch: async (uri, options) => {
             if (!app.currentUser) {
                 throw new Error("Must be logged in to use the GraphQL API");
