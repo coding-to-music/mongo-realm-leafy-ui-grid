@@ -1,10 +1,10 @@
 [
     {
-        "name": "getGridData",
-        "private": false
-    },
-    {
         "name": "resetPassword",
         "private": true
+    },
+    {
+        "name": "getGridData",
+        "private": false
     }
 ]

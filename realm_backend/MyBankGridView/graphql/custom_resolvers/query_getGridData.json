@@ -15,6 +15,176 @@
     },
     "input_type_format": "custom",
     "on_type": "Query",
-    "payload_type": "CustomerSingleviewFlat",
-    "payload_type_format": "generated-list"
+    "payload_type": {
+        "properties": {
+            "rows": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "object",
+                    "properties": {
+                        "_id": {
+                            "bsonType": "string"
+                        },
+                        "address": {
+                            "bsonType": "object",
+                            "properties": {
+                                "city": {
+                                    "bsonType": "string"
+                                },
+                                "country": {
+                                    "bsonType": "string"
+                                },
+                                "street": {
+                                    "bsonType": "string"
+                                },
+                                "zip": {
+                                    "bsonType": "string"
+                                }
+                            }
+                        },
+                        "age": {
+                            "bsonType": "int"
+                        },
+                        "birthdate": {
+                            "bsonType": "object",
+                            "properties": {
+                                "day": {
+                                    "bsonType": "int"
+                                },
+                                "month": {
+                                    "bsonType": "int"
+                                },
+                                "year": {
+                                    "bsonType": "int"
+                                }
+                            }
+                        },
+                        "consultant": {
+                            "bsonType": "object",
+                            "properties": {
+                                "_id": {
+                                    "bsonType": "int"
+                                },
+                                "firstName": {
+                                    "bsonType": "string"
+                                },
+                                "lastName": {
+                                    "bsonType": "string"
+                                },
+                                "location": {
+                                    "bsonType": "array",
+                                    "items": {
+                                        "bsonType": "double"
+                                    }
+                                },
+                                "rating": {
+                                    "bsonType": "string"
+                                }
+                            }
+                        },
+                        "consultantId": {
+                            "bsonType": "int"
+                        },
+                        "contact": {
+                            "bsonType": "object",
+                            "properties": {
+                                "email": {
+                                    "bsonType": "array",
+                                    "items": {
+                                        "bsonType": "object",
+                                        "properties": {
+                                            "address": {
+                                                "bsonType": "string"
+                                            },
+                                            "type": {
+                                                "bsonType": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "phone": {
+                                    "bsonType": "array",
+                                    "items": {
+                                        "bsonType": "object",
+                                        "properties": {
+                                            "number": {
+                                                "bsonType": "string"
+                                            },
+                                            "type": {
+                                                "bsonType": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "crmInformation": {
+                            "bsonType": "object",
+                            "properties": {
+                                "lastPhysicalContactDate": {
+                                    "bsonType": "date"
+                                },
+                                "lastVirtualContactDate": {
+                                    "bsonType": "date"
+                                },
+                                "segmentation": {
+                                    "bsonType": "string"
+                                },
+                                "totalContactsYtd": {
+                                    "bsonType": "int"
+                                },
+                                "totalPhysicalContactsLastYearPeriod": {
+                                    "bsonType": "int"
+                                },
+                                "totalVirtualContactsLastYearPeriod": {
+                                    "bsonType": "int"
+                                }
+                            }
+                        },
+                        "firstName": {
+                            "bsonType": "string"
+                        },
+                        "lastName": {
+                            "bsonType": "string"
+                        },
+                        "portfolio": {
+                            "bsonType": "object",
+                            "properties": {
+                                "accounts": {
+                                    "bsonType": "object",
+                                    "properties": {
+                                        "balance": {
+                                            "bsonType": "decimal"
+                                        },
+                                        "name": {
+                                            "bsonType": "string"
+                                        },
+                                        "number": {
+                                            "bsonType": "string"
+                                        },
+                                        "type": {
+                                            "bsonType": "string"
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "bsonType": "string"
+                                },
+                                "number": {
+                                    "bsonType": "string"
+                                }
+                            }
+                        },
+                        "profession": {
+                            "bsonType": "string"
+                        }
+                    },
+                    "title": "customerSingleviewFlat"
+                }
+            }
+        },
+        "title": "customers",
+        "type": "object"
+    },
+    "payload_type_format": "custom"
 }
