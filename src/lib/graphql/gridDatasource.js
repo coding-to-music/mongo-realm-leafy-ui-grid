@@ -10,6 +10,7 @@ export const createServerSideDatasource = ({ client }) => {
                 query: gql`
                     query getGridData($queryModelInput:GridQueryModel) {
                         getGridData(input: $queryModelInput) {
+                            lastRow
                             rows {
                                 lastName
                                 firstName
