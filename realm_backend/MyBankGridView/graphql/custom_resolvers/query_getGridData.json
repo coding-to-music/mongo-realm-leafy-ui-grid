@@ -6,6 +6,29 @@
             "endRow": {
                 "bsonType": "int"
             },
+            "groupKeys": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "string"
+                }
+            },
+            "rowGroupCols": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "object",
+                    "properties": {
+                        "displayName": {
+                            "bsonType": "string"
+                        },
+                        "field": {
+                            "bsonType": "string"
+                        },
+                        "id": {
+                            "bsonType": "string"
+                        }
+                    }
+                }
+            },
             "startRow": {
                 "bsonType": "int"
             }

@@ -1,4 +1,4 @@
-exports = async ({ startRow, endRow }) => {
+exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[] }) => {
   const cluster = context.services.get("mongodb-atlas");
   const collection = cluster.db("mybank").collection("customerSingleView");
   
@@ -32,11 +32,25 @@ exports = async ({ startRow, endRow }) => {
 /** 
  * TESTDATA
  * copy this to console section
+
+const rowGroupCols=[
+  {
+    "id": "customer",
+    "displayName": "Customer",
+    "field": "customer"
+  }
+]
+
+const groupKeys = [
+  "798.458.368-44"
+]
  
 exports(
   {
     startRow: 0, 
-    endRow: 5
+    endRow: 5,
+    rowGroupCols,
+    groupKeys
   }  
 )
 */
