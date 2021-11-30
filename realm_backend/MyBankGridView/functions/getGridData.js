@@ -3,6 +3,14 @@ exports = async ({ startRow, endRow }) => {
   const collection = cluster.db("mybank").collection("newSingleView");
   
   const agg = [];
+  
+  agg.push({
+    $unwind: {
+        path: "$accounts",
+        includeArrayIndex: "accountIdx",
+        preserveNullAndEmptyArrays: true
+    }
+  })
 
   agg.push({
     $facet: {
