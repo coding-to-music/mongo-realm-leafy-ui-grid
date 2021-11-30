@@ -3,7 +3,7 @@
     "type": "mongodb-atlas",
     "config": {
         "clusterName": "MyBank",
-        "readPreference": "primary",
+        "readPreference": "nearest",
         "wireProtocolEnabled": false
     }
 }

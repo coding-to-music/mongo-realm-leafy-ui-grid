@@ -28,6 +28,23 @@
                         "_id": {
                             "bsonType": "string"
                         },
+                        "accounts": {
+                            "bsonType": "object",
+                            "properties": {
+                                "balance": {
+                                    "bsonType": "decimal"
+                                },
+                                "name": {
+                                    "bsonType": "string"
+                                },
+                                "number": {
+                                    "bsonType": "string"
+                                },
+                                "type": {
+                                    "bsonType": "string"
+                                }
+                            }
+                        },
                         "address": {
                             "bsonType": "object",
                             "properties": {
@@ -149,23 +166,6 @@
                         },
                         "lastName": {
                             "bsonType": "string"
-                        },
-                        "accounts": {
-                            "bsonType": "object",
-                            "properties": {
-                                "balance": {
-                                    "bsonType": "decimal"
-                                },
-                                "name": {
-                                    "bsonType": "string"
-                                },
-                                "number": {
-                                    "bsonType": "string"
-                                },
-                                "type": {
-                                    "bsonType": "string"
-                                }
-                            }
                         },
                         "profession": {
                             "bsonType": "string"
