@@ -21,12 +21,9 @@ export const createServerSideDatasource = ({ client }) => {
                                 crmInformation {
                                     segmentation
                                 }
-                                portfolio {
-                                    number
-                                    accounts {
-                                    number
-                                    balance
-                                }
+                                accounts {
+                                number
+                                balance
                             }
                         }
                     }
