@@ -1,8 +1,8 @@
 {
-    "app_id": "mybankgridview-ahggo",
+    "app_id": "mybankgridview_p-awtkl",
     "config_version": 20210101,
-    "name": "MyBankGridView",
+    "name": "MyBankGridView_P",
     "location": "DE-FF",
     "deployment_model": "LOCAL",
-    "environment": "development"
+    "environment": "production"
 }
