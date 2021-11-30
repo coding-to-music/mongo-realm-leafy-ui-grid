@@ -3,6 +3,26 @@
         "_id": {
             "bsonType": "string"
         },
+        "accounts": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "object",
+                "properties": {
+                    "balance": {
+                        "bsonType": "decimal"
+                    },
+                    "name": {
+                        "bsonType": "string"
+                    },
+                    "number": {
+                        "bsonType": "string"
+                    },
+                    "type": {
+                        "bsonType": "string"
+                    }
+                }
+            }
+        },
         "address": {
             "bsonType": "object",
             "properties": {
@@ -24,41 +44,7 @@
             "bsonType": "int"
         },
         "birthdate": {
-            "bsonType": "object",
-            "properties": {
-                "day": {
-                    "bsonType": "int"
-                },
-                "month": {
-                    "bsonType": "int"
-                },
-                "year": {
-                    "bsonType": "int"
-                }
-            }
-        },
-        "consultant": {
-            "bsonType": "object",
-            "properties": {
-                "_id": {
-                    "bsonType": "int"
-                },
-                "firstName": {
-                    "bsonType": "string"
-                },
-                "lastName": {
-                    "bsonType": "string"
-                },
-                "location": {
-                    "bsonType": "array",
-                    "items": {
-                        "bsonType": "double"
-                    }
-                },
-                "rating": {
-                    "bsonType": "string"
-                }
-            }
+            "bsonType": "date"
         },
         "consultantId": {
             "bsonType": "int"
@@ -125,37 +111,9 @@
         "lastName": {
             "bsonType": "string"
         },
-        "portfolio": {
-            "bsonType": "object",
-            "properties": {
-                "accounts": {
-                    "bsonType": "object",
-                    "properties": {
-                        "balance": {
-                            "bsonType": "decimal"
-                        },
-                        "name": {
-                            "bsonType": "string"
-                        },
-                        "number": {
-                            "bsonType": "string"
-                        },
-                        "type": {
-                            "bsonType": "string"
-                        }
-                    }
-                },
-                "name": {
-                    "bsonType": "string"
-                },
-                "number": {
-                    "bsonType": "string"
-                }
-            }
-        },
         "profession": {
             "bsonType": "string"
         }
     },
-    "title": "customerSingleviewFlat"
+    "title": "newSingleView"
 }

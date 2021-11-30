@@ -1,13 +1,10 @@
 {
-    "collection": "customerSingleviewFlat",
+    "collection": "newSingleView",
     "database": "mybank",
     "roles": [
         {
             "name": "default",
             "apply_when": {},
-            "fields": {
-                "rating": {}
-            },
             "read": true,
             "insert": true,
             "delete": true,
