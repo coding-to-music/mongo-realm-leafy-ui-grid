@@ -1,8 +1,26 @@
 const columnTypes = {
+    dimension: {
+        enableRowGroup: true,
+        enablePivot: true
+    },
     valueColumn: {
-        width: 150
+        width: 300,
+        aggFunc: "sum",
+        cellClass: "number",
+        enableValue: true,
+        allowedAggFuncs: ['avg', 'sum', 'min', 'max', 'count']
     }
 };
+
+const sideBar = {
+    toolPanels: [
+        {
+            id: "columns",
+            labelDefault: "Columns",
+            toolPanel: "agColumnsToolPanel"
+        }
+    ]
+}
 
 const defaultColDef = {
     sortable: false,
@@ -12,7 +30,7 @@ const defaultColDef = {
 const rowSelection = "single";
 const rowModelType = "serverSide";
 const serverSideStoreType = "partial";
-const cacheBlockSize = 20;
+const cacheBlockSize = 200;
 
 export default {
     columnTypes,
@@ -20,5 +38,6 @@ export default {
     rowSelection,
     rowModelType,
     serverSideStoreType,
-    cacheBlockSize
+    cacheBlockSize,
+    //sideBar
 }

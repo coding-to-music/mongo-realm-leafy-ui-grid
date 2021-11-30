@@ -15,26 +15,45 @@ const formatCurrency = (params) => {
     return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(params.value);
 }
 
+const formatNumber = (value) => {
+    return new Intl.NumberFormat('de-DE').format(value);
+}
+
+
 const Grid = ({ client }) => {
     const app = useRealmApp();
 
     const columnDefs = [
+        { field: "customer", valueGetter: "data._id", enableRowGroup: true, rowGroup: true, hide: true},
         { field: "lastName"},
         { field: "firstName"},
         { field: "age", },
         { field: "country", valueGetter: "data.address.country"},
         { field: "segment", valueGetter: "data.crmInformation.segmentation"},
-        { field: "portfolio", valueGetter: "data.portfolio.number"},
-        { field: "account", valueGetter: "data.portfolio.accounts.number"},
-        { field: "balance", valueGetter: "data.portfolio.accounts.balance", valueFormatter: formatCurrency }
+        { field: "account", valueGetter: "data.accounts.name"},
+        { 
+            field: "balance", 
+            valueGetter: "data.accounts.balance", 
+            valueFormatter: formatCurrency,
+            type: "valueColumn"
+        }
     ]
 
     const gridOptions = Object.assign(GridOptions, {columnDefs});
     const datasource = createServerSideDatasource({client});
 
+    const [gridApi, setGridApi] = React.useState(null)
+    const [totalRows, setTotalRows] = React.useState(0);
+
     const onGridReady = (params) => {
         params.api.sizeColumnsToFit();
         params.api.setServerSideDatasource(datasource);
+        
+        setGridApi(params.api);
+    }
+
+    const onModelUpdate = (params) => {
+        setTotalRows(params.api.getDisplayedRowCount());
     }
 
     return (
@@ -46,8 +65,10 @@ const Grid = ({ client }) => {
             <AgGridReact
                 gridOptions={gridOptions}
                 onGridReady={onGridReady}
+                onModelUpdated={onModelUpdate}
             />
         </div>
+        <h4>{`Total Results: ${formatNumber(totalRows)}`}</h4>
         <h4>User: {app.currentUser.id ? `${app.currentUser.id} (${app.currentUser.providerType})` : "not logged in"}</h4>
         <Button variant="primary" onClick={() => app.logOut()}>Logout</Button>
         </>

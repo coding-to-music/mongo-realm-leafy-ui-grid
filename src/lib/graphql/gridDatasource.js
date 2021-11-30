@@ -3,7 +3,9 @@ import { gql } from "@apollo/client";
 export const createServerSideDatasource = ({ client }) => {
     return {
         getRows: (params) => {
-            console.log(params.request);
+            console.log(params);
+            //console.log(params.columnApi.getAllDisplayedColumns().map(col => col.getColId()).filter(colName => colName !== "ag-Grid-AutoColumn"));
+            console.log(params.columnApi.getAllDisplayedColumns());
             const { startRow, endRow } = params.request;
 
             const query = { 
@@ -12,6 +14,7 @@ export const createServerSideDatasource = ({ client }) => {
                         getGridData(input: $queryModelInput) {
                             lastRow
                             rows {
+                                _id
                                 lastName
                                 firstName
                                 age
