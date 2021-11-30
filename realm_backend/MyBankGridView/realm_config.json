@@ -1,8 +1,0 @@
-{
-    "app_id": "mybankgridview_p-awtkl",
-    "config_version": 20210101,
-    "name": "MyBankGridView_P",
-    "location": "DE-FF",
-    "deployment_model": "LOCAL",
-    "environment": "production"
-}
