@@ -1,6 +1,6 @@
 exports = async ({ startRow, endRow }) => {
   const cluster = context.services.get("mongodb-atlas");
-  const collection = cluster.db("mybank").collection("newSingleView");
+  const collection = cluster.db("mybank").collection("customerSingleView");
   
   const agg = [];
   

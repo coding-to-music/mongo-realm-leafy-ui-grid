@@ -9,7 +9,7 @@
                 "bsonType": "object",
                 "properties": {
                     "balance": {
-                        "bsonType": "decimal"
+                        "bsonType": "long"
                     },
                     "name": {
                         "bsonType": "string"
@@ -115,5 +115,5 @@
             "bsonType": "string"
         }
     },
-    "title": "newSingleView"
+    "title": "customerSingleView"
 }

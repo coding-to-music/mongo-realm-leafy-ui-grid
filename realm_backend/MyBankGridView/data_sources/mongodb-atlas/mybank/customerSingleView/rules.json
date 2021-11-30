@@ -1,5 +1,5 @@
 {
-    "collection": "newSingleView",
+    "collection": "customerSingleView",
     "database": "mybank",
     "roles": [
         {
