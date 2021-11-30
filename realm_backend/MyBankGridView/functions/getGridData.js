@@ -1,13 +1,13 @@
 exports = async ({ startRow, endRow }) => {
   const cluster = context.services.get("mongodb-atlas");
-  const collection = cluster.db("mybank").collection("customerSingleviewFlat");
+  const collection = cluster.db("mybank").collection("newSingleView");
   
   const agg = [];
 
   agg.push({
     $facet: {
       rows: [{"$skip": startRow}, {"$limit": endRow-startRow}],
-      //rowCount: [{$count: 'lastRow'}]
+      rowCount: [{$count: 'lastRow'}]
     }
   });
 

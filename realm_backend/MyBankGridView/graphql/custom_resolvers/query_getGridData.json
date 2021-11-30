@@ -17,6 +17,9 @@
     "on_type": "Query",
     "payload_type": {
         "properties": {
+            "lastRow": {
+                "bsonType": "int"
+            },
             "rows": {
                 "bsonType": "array",
                 "items": {
