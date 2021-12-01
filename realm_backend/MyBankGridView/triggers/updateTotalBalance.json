@@ -1,0 +1,28 @@
+{
+    "id": "61a74ccca899b5c1b3da45f2",
+    "name": "updateTotalBalance",
+    "type": "DATABASE",
+    "config": {
+        "operation_types": [
+            "INSERT",
+            "UPDATE",
+            "REPLACE"
+        ],
+        "database": "mybank",
+        "collection": "customerSingleView",
+        "service_name": "mongodb-atlas",
+        "match": {},
+        "project": {},
+        "full_document": true,
+        "full_document_before_change": false,
+        "unordered": true
+    },
+    "disabled": false,
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "updateTotalBalance"
+            }
+        }
+    }
+}
