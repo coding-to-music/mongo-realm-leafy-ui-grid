@@ -3,6 +3,8 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[] }) => {
   const collection = cluster.db("mybank").collection("customerSingleView");
   
   const agg = [];
+
+  //this is a test with gitflow deployment
   
   agg.push({
     $unwind: {
@@ -32,6 +34,7 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[] }) => {
 /** 
  * TESTDATA
  * copy this to console section
+ *
 
 const rowGroupCols=[
   {
