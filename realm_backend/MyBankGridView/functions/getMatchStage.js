@@ -25,7 +25,7 @@ const rowGroupCols = [
 ];
 
 const groupKeys = [
-    "Singapore", "Bla"
+    "_id", "583.720.911-53"
 ];
 
 exports({rowGroupCols, groupKeys});

@@ -34,6 +34,7 @@ exports = ({rowGroupCols, groupKeys, valueCols}) => {
   return pipeline;
 };
 
+//help to renest values from dot-format
 function convertDotPathToNestedObject(path, value) {
   const [last, ...paths] = path.split('.').reverse();
   return paths.reduce((acc, el) => ({ [el]: acc }), { [last]: value });

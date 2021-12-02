@@ -9,7 +9,7 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
   
   if(groupKeys.length > 0) {
     //generate match in grouping case and translate between string and int (because GraphQL schema in Realm only supports exactly one datatype as input)
-    agg.push(context.functions.execute('getMatchStage', {rowGroupCols, groupKeys: groupKeys.map(key => isNaN(parseInt(key)) ? key : parseInt(key))}));
+    agg.push(context.functions.execute('getMatchStage', {rowGroupCols, groupKeys: groupKeys.map(key => isNaN(key) ? key : parseInt(key))}));
   }
   
   agg.push(
@@ -63,7 +63,7 @@ const rowGroupCols= [
 ]
 
 const groupKeys = [
-    "Singapore"
+    "583.720.911-53"
 ]
 
 const valueCols = [
