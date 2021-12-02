@@ -2,18 +2,14 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[] }) => {
   const cluster = context.services.get("mongodb-atlas");
   const collection = cluster.db("mybank").collection("customerSingleView");
   
-  const agg = [];
-
-  //this is a test with gitflow deployment
-  
-  agg.push({
-    $unwind: {
+  const agg = [
+    { $unwind: {
         path: "$accounts",
         includeArrayIndex: "accountIdx",
         preserveNullAndEmptyArrays: true
-    }
-  })
-
+    }}
+  ];
+  
   agg.push({
     $facet: {
       rows: [{"$skip": startRow}, {"$limit": endRow-startRow}],

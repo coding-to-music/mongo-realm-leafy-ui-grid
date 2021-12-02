@@ -1,5 +1,5 @@
 {
-    "id": "61a79066f443497d56e23b48",
+    "id": "61a79088d6d16ccc5b7b16cb",
     "name": "updateTotalBalance",
     "type": "DATABASE",
     "config": {
@@ -17,7 +17,7 @@
         "full_document_before_change": false,
         "unordered": true
     },
-    "disabled": false,
+    "disabled": true,
     "event_processors": {
         "FUNCTION": {
             "config": {
