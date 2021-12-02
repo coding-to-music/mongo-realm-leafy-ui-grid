@@ -213,7 +213,7 @@
                         "profession": {
                             "bsonType": "string"
                         },
-                        "uniequeId": {
+                        "uniqueId": {
                             "bsonType": "string"
                         }
                     },
