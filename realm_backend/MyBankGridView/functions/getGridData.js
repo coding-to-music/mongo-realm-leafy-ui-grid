@@ -12,15 +12,14 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
     agg.push(context.functions.execute('getMatchStage', {rowGroupCols, groupKeys: groupKeys.map(key => isNaN(key) ? key : parseInt(key))}));
   }
 
-/*
+
   agg.push(
     { $unwind: {
         path: "$accounts",
-        includeArrayIndex: "accountIdx",
-        preserveNullAndEmptyArrays: true
+        preserveNullAndEmptyArrays: false
     }}
   );
-*/
+
   
   //set grouping if required
   if (rowGroupCols.length > 0 && rowGroupCols.length > groupKeys.length) {
