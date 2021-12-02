@@ -20,6 +20,11 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
     }}
   );
   
+  agg.push(
+    { $set: {
+      "_id": {$concat: ["$_id", "-", {$toString: "$accountIdx"}]}
+    }})
+  
   //set grouping if required
   if (rowGroupCols.length > 0 && rowGroupCols.length > groupKeys.length) {
     forEach(context.functions.execute('getGroupStage', {rowGroupCols, groupKeys, valueCols}), (element) => agg.push(element));
