@@ -4,11 +4,7 @@ const columnTypes = {
         enablePivot: true
     },
     valueColumn: {
-        width: 300,
         aggFunc: "sum",
-        cellClass: "number",
-        enableValue: true,
-        allowedAggFuncs: ['avg', 'sum', 'min', 'max', 'count']
     }
 };
 
@@ -38,6 +34,6 @@ export default {
     rowSelection,
     rowModelType,
     serverSideStoreType,
-    cacheBlockSize,
+    cacheBlockSize
     //sideBar
 }

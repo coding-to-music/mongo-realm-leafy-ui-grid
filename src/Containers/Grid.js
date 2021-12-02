@@ -24,32 +24,39 @@ const Grid = ({ client }) => {
     const app = useRealmApp();
 
     const columnDefs = [
-        { field: "customer", valueGetter: "data._id", enableRowGroup: true, rowGroup: true, hide: true},
-        { field: "lastName"},
-        { field: "firstName"},
-        { field: "age", },
-        { field: "country", valueGetter: "data.address.country"},
-        { field: "segment", valueGetter: "data.crmInformation.segmentation"},
-        { field: "account", valueGetter: "data.accounts.name"},
+        { 
+            field: "customer",
+            colId: "_id",
+            valueGetter: "data._id",
+            type: "dimension"
+        },
+        { field: "lastName" },
+        { field: "firstName" },
+        { field: "age", type: "dimension" },
+        { field: "country", type: "dimension", valueGetter: "data.address.country"},
+        { field: "segment", type: "dimension", valueGetter: "data.crmInformation.segmentation"},
+        { field: "account", valueGetter: "data.accounts.number", hide: true},
         { 
             field: "balance", 
+            colId: "accounts.balance",
             valueGetter: "data.accounts.balance", 
             valueFormatter: formatCurrency,
-            type: "valueColumn"
+            type: "valueColumn",
+            cellClassRules: {
+                "rag-red": params => params.value <= 0,
+                "rag-green": params => params.value > 0
+            }
         }
     ]
 
     const gridOptions = Object.assign(GridOptions, {columnDefs});
     const datasource = createServerSideDatasource({client});
 
-    const [gridApi, setGridApi] = React.useState(null)
     const [totalRows, setTotalRows] = React.useState(0);
 
     const onGridReady = (params) => {
         params.api.sizeColumnsToFit();
         params.api.setServerSideDatasource(datasource);
-        
-        setGridApi(params.api);
     }
 
     const onModelUpdate = (params) => {
