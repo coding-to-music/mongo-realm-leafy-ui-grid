@@ -1,9 +1,5 @@
 [
     {
-        "name": "getGridData",
-        "private": false
-    },
-    {
         "name": "resetPassword",
         "private": true
     },
@@ -11,6 +7,10 @@
         "name": "updateTotalBalance",
         "private": true,
         "run_as_system": true
+    },
+    {
+        "name": "getGridData",
+        "private": false
     },
     {
         "name": "getGroupStage",
