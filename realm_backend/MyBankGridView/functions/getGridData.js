@@ -16,10 +16,16 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
   agg.push(
     { $unwind: {
         path: "$accounts",
+        includeArrayIndex: 'accountIdx',
         preserveNullAndEmptyArrays: false
     }}
   );
 
+  agg.push(
+    { $set: {
+         uniqueId: {$concat: ["$_id", "-", {$toString: "$accountIdx"}]}
+    }}
+  );
   
   //set grouping if required
   if (rowGroupCols.length > 0 && rowGroupCols.length > groupKeys.length) {

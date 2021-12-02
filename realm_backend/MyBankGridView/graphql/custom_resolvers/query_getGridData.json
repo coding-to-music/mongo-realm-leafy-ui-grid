@@ -212,6 +212,9 @@
                         },
                         "profession": {
                             "bsonType": "string"
+                        },
+                        "uniequeId": {
+                            "bsonType": "string"
                         }
                     },
                     "title": "customerSingleviewFlat"
