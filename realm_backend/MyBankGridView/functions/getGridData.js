@@ -1,14 +1,29 @@
-exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[] }) => {
+exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[] }) => {
+  
+  const forEach = require("lodash/forEach");
+  
   const cluster = context.services.get("mongodb-atlas");
   const collection = cluster.db("mybank").collection("customerSingleView");
   
-  const agg = [
+  const agg = [];
+  
+  if(groupKeys.length > 0) {
+    //generate match in grouping case and translate between string and int (because GraphQL schema in Realm only supports exactly one datatype as input)
+    agg.push(context.functions.execute('getMatchStage', {rowGroupCols, groupKeys: groupKeys.map(key => isNaN(parseInt(key)) ? key : parseInt(key))}));
+  }
+  
+  agg.push(
     { $unwind: {
         path: "$accounts",
         includeArrayIndex: "accountIdx",
         preserveNullAndEmptyArrays: true
     }}
-  ];
+  );
+  
+  //set grouping if required
+  if (rowGroupCols.length > 0 && rowGroupCols.length > groupKeys.length) {
+    forEach(context.functions.execute('getGroupStage', {rowGroupCols, groupKeys, valueCols}), (element) => agg.push(element));
+  }
   
   agg.push({
     $facet: {
@@ -22,7 +37,9 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[] }) => {
       rows: 1,
       lastRow: {$arrayElemAt: ["$rowCount.lastRow", 0]}
     }
-  })
+  });
+  
+  console.log(JSON.stringify(agg));
   
   return await collection.aggregate(agg).next();
 }
@@ -32,24 +49,52 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[] }) => {
  * copy this to console section
  *
 
-const rowGroupCols=[
-  {
-    "id": "customer",
-    "displayName": "Customer",
-    "field": "customer"
-  }
+const rowGroupCols= [
+    {
+        "id": "address.country",
+        "displayName": "Country",
+        "field": "country"
+    },
+    {
+        "id": "_id",
+        "displayName": "Customer",
+        "field": "customer"
+    }
 ]
 
 const groupKeys = [
-  "798.458.368-44"
+    "Singapore"
 ]
- 
+
+const valueCols = [
+    {
+        "id": "lastName",
+        "aggFunc": "first",
+        "displayName": "Last Name",
+        "field": "lastName"
+    },
+    {
+        "id": "firstName",
+        "aggFunc": "first",
+        "displayName": "First Name",
+        "field": "firstName"
+    },
+    {
+        "id": "accounts.balance",
+        "aggFunc": "sum",
+        "displayName": "Balance",
+        "field": "balance"
+    }
+]
+
+
 exports(
   {
     startRow: 0, 
     endRow: 5,
     rowGroupCols,
-    groupKeys
+    groupKeys, 
+    valueCols
   }  
 )
 */

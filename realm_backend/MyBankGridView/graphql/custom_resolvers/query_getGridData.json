@@ -31,6 +31,26 @@
             },
             "startRow": {
                 "bsonType": "int"
+            },
+            "valueCols": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "object",
+                    "properties": {
+                        "aggFunc": {
+                            "bsonType": "string"
+                        },
+                        "displayName": {
+                            "bsonType": "string"
+                        },
+                        "field": {
+                            "bsonType": "string"
+                        },
+                        "id": {
+                            "bsonType": "string"
+                        }
+                    }
+                }
             }
         },
         "title": "GridQueryModel",
