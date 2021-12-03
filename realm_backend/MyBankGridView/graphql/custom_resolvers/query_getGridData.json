@@ -212,9 +212,6 @@
                         },
                         "profession": {
                             "bsonType": "string"
-                        },
-                        "uniqueId": {
-                            "bsonType": "string"
                         }
                     },
                     "title": "customerSingleviewFlat"
