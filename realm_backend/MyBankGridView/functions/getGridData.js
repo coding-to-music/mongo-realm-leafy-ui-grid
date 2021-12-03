@@ -37,6 +37,13 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
     forEach(context.functions.execute('getGroupStage', {rowGroupCols, groupKeys, valueCols}), (element) => agg.push(element));
   }
   
+  agg.push(
+    { $set: {
+         customerId: "$_id"
+    }}
+  );
+
+  
   agg.push({
     $facet: {
       rows: [{"$skip": startRow}, {"$limit": endRow-startRow}],

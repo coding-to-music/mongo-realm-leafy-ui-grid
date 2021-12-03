@@ -68,9 +68,6 @@
                 "items": {
                     "bsonType": "object",
                     "properties": {
-                        "_id": {
-                            "bsonType": "string"
-                        },
                         "accounts": {
                             "bsonType": "object",
                             "properties": {
@@ -203,6 +200,9 @@
                                     "bsonType": "int"
                                 }
                             }
+                        },
+                        "customerId": {
+                            "bsonType": "string"
                         },
                         "firstName": {
                             "bsonType": "string"
