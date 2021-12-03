@@ -5,7 +5,8 @@ export const createServerSideDatasource = ({ client }) => {
         getRows: (params) => {
             console.log(params);
             //console.log(params.columnApi.getAllDisplayedColumns().map(col => col.getColId()).filter(colName => colName !== "ag-Grid-AutoColumn"));
-            const { startRow, endRow, rowGroupCols, groupKeys, valueCols } = params.request;
+            const { startRow, endRow, rowGroupCols, groupKeys, valueCols, sortModel } = params.request;
+            sortModel.map(model => model.sort = model.sort.toUpperCase());
 
             const customerGroup = `
             accounts {
@@ -47,7 +48,8 @@ export const createServerSideDatasource = ({ client }) => {
                         endRow,
                         rowGroupCols,
                         groupKeys,
-                        valueCols
+                        valueCols,
+                        sortModel
                     }
                 }
             };

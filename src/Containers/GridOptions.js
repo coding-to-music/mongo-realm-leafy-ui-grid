@@ -27,8 +27,12 @@ const rowGroupPanelShow = "always";
 const groupDisplayType = "multipleColumns";
 
 const defaultColDef = {
-    sortable: false,
+    sortable: true,
     resizable: true
+}
+
+const onSortChanged = (params) => {
+    params.api.refreshServerSideStore({purge: true});
 }
 
 const rowSelection = "single";
@@ -45,5 +49,6 @@ export default {
     cacheBlockSize,
     rowGroupPanelShow,
     groupDisplayType,
+    onSortChanged
     //sideBar
 }
