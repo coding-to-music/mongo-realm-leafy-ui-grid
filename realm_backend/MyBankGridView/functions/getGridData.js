@@ -11,7 +11,12 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
     //generate match in grouping case and translate between string and int (because GraphQL schema in Realm only supports exactly one datatype as input)
     agg.push(context.functions.execute('getMatchStage', {rowGroupCols, groupKeys: groupKeys.map(key => isNaN(key) ? key : parseInt(key))}));
   }
-
+  
+  agg.push(
+    {
+      $sort: {_id: 1}
+    }  
+  )
 
   agg.push(
     { $unwind: {
@@ -46,7 +51,7 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
     }
   });
   
-  console.log(JSON.stringify(agg));
+  console.log(JSON.stringify(agg, null, ' '));
   
   return await collection.aggregate(agg).next();
 }
