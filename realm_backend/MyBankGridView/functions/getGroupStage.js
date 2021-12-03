@@ -5,7 +5,7 @@ exports = ({rowGroupCols, groupKeys, valueCols}) => {
   // find out about the lowest level of grouping and take this to create
   // group stage in aggregation pipeline
   const groupToUse = rowGroupCols.slice(groupKeys.length, groupKeys.length + 1);
-  let project = convertDotPathToNestedObject(groupToUse[0].id, `$_id.${groupToUse[0].id}`);
+  let project = convertDotPathToNestedObject(groupToUse[0].id, `$_id.${last(split(groupToUse[0].id, '.'))}`);
 
   // create all valueColums to calculate by the aggFunc set in Grid
   // see GridOptions.js in client code
