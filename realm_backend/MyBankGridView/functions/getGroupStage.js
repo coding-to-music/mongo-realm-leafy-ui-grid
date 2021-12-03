@@ -12,27 +12,28 @@ exports = ({rowGroupCols, groupKeys, valueCols}) => {
   if (groupToUse[0].id === "customerId") {
     // Use special grouping on Customer-Level to have multiple fields attached
     project = {
-      "lastName": "$_id.lastName",
-      "firstName": "$_id.firstName",
-      "age": "$_id.age",
-      "crmInformaton": {
-        "segmentation": "$_id.segmentation"
+      customerId: "$_id.customerId",
+      lastName: "$_id.lastName",
+      firstName: "$_id.firstName",
+      age: "$_id.age",
+      crmInformation: {
+        segmentation: "$_id.segmentation"
       },
-      "address": {
-        "country": "$_id.country"
+      address: {
+        country: "$_id.country"
       },
-      "accounts": {
-        "balance": "$balance"
+      accounts: {
+        balance: "$balance"
       }
     }
     
     groupId = {
-      "customerId": "$customerId",
-      "lastName": "$lastName",
-      "firstName": "$firstName",
-      "age": "$age",
-      "country": "$address.country",
-      "segmentation": "$crmInformation.segmentation"
+      customerId: "$customerId",
+      lastName: "$lastName",
+      firstName: "$firstName",
+      age: "$age",
+      country: "$address.country",
+      segmentation: "$crmInformation.segmentation"
     }
     
     groupBody = {
