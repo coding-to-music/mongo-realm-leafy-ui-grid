@@ -1,4 +1,4 @@
-exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[] }) => {
+exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[], sortModel=[] }) => {
   
   const forEach = require("lodash/forEach");
   
@@ -13,12 +13,6 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
   }
   
   agg.push(
-    {
-      $sort: {_id: 1}
-    }  
-  )
-
-  agg.push(
     { $unwind: {
         path: "$accounts",
         preserveNullAndEmptyArrays: false
@@ -29,6 +23,10 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
   if (rowGroupCols.length > 0 && rowGroupCols.length > groupKeys.length) {
     forEach(context.functions.execute('getGroupStage', {rowGroupCols, groupKeys, valueCols}), (element) => agg.push(element));
   }
+  
+  agg.push({
+    $sort: sortModel.length <= 0 ? {_id:1} : context.functions.execute('getSortStage', sortModel)
+  });
   
   agg.push({
     $facet: {

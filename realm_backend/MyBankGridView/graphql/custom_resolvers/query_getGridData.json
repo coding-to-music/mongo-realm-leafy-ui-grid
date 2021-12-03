@@ -29,6 +29,24 @@
                     }
                 }
             },
+            "sortModel": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "object",
+                    "properties": {
+                        "colId": {
+                            "bsonType": "string"
+                        },
+                        "sort": {
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "title": "sort"
+                        }
+                    }
+                }
+            },
             "startRow": {
                 "bsonType": "int"
             },
