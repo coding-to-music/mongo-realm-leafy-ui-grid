@@ -1,4 +1,8 @@
 const columnTypes = {
+    detail: {
+        enableRowGroup: false,
+        enablePivot: false
+    },
     dimension: {
         enableRowGroup: true,
         enablePivot: true
@@ -18,6 +22,10 @@ const sideBar = {
     ]
 }
 
+const rowGroupPanelShow = "always";
+
+const groupDisplayType = "multipleColumns";
+
 const defaultColDef = {
     sortable: false,
     resizable: true
@@ -26,7 +34,7 @@ const defaultColDef = {
 const rowSelection = "single";
 const rowModelType = "serverSide";
 const serverSideStoreType = "partial";
-const cacheBlockSize = 200;
+const cacheBlockSize = 100;
 
 export default {
     columnTypes,
@@ -34,6 +42,8 @@ export default {
     rowSelection,
     rowModelType,
     serverSideStoreType,
-    cacheBlockSize
+    cacheBlockSize,
+    rowGroupPanelShow,
+    groupDisplayType,
     //sideBar
 }

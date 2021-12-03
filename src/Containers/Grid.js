@@ -26,16 +26,18 @@ const Grid = ({ client }) => {
     const columnDefs = [
         { 
             field: "customer",
-            colId: "_id",
-            valueGetter: "data._id",
-            type: "dimension"
+            colId: "customerId",
+            valueGetter: "data.customerId",
+            type: "dimension",
+            rowGroup: true,
+            hide: true
         },
-        { field: "lastName" },
-        { field: "firstName" },
+        { field: "lastName", type: "detail" },
+        { field: "firstName", type: "detail" },
         { field: "age", type: "dimension" },
-        { field: "country", type: "dimension", valueGetter: "data.address.country"},
-        { field: "segment", type: "dimension", valueGetter: "data.crmInformation.segmentation"},
-        { field: "account", valueGetter: "data.accounts.number", hide: true},
+        { field: "country", colId: "address.country", type: "dimension", valueGetter: "data.address.country"},
+        { field: "segment", colId: "crmInformation.segmentation", type: "dimension", valueGetter: "data.crmInformation.segmentation"},
+        { field: "account", colId: "accounts.number", valueGetter: "data.accounts.number"},
         { 
             field: "balance", 
             colId: "accounts.balance",
