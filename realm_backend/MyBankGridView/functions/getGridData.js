@@ -44,7 +44,7 @@ exports = async ({ startRow, endRow, rowGroupCols=[], groupKeys=[], valueCols=[]
   
   console.log(JSON.stringify(agg, null, ' '));
   
-  return await collection.aggregate(agg).next();
+  return await collection.aggregate(agg, {allowDiskUse: true}).next();
 }
 
 /** 
