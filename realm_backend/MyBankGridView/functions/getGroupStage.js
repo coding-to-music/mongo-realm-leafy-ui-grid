@@ -11,7 +11,7 @@ exports = ({rowGroupCols, groupKeys, valueCols}) => {
   // see GridOptions.js in client code
   let groupBody = {};
   valueCols.forEach(element => {
-    if (groupToUse[0].id === "_id" || element.aggFunc !== "first") {
+    if (groupToUse[0].id === "customerId" || element.aggFunc !== "first") {
       // if we have expectation for nested return, we need to nest them again because
       // group will return un-nested values
       project = Object.assign(project, convertDotPathToNestedObject(element.id, `$${last(split(element.id, '.'))}`));

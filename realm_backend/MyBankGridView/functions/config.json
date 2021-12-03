@@ -1,14 +1,5 @@
 [
     {
-        "name": "getGridData",
-        "private": false
-    },
-    {
-        "name": "getGroupStage",
-        "private": true,
-        "run_as_system": true
-    },
-    {
         "name": "getMatchStage",
         "private": true
     },
@@ -18,6 +9,15 @@
     },
     {
         "name": "updateTotalBalance",
+        "private": true,
+        "run_as_system": true
+    },
+    {
+        "name": "getGridData",
+        "private": false
+    },
+    {
+        "name": "getGroupStage",
         "private": true,
         "run_as_system": true
     }
