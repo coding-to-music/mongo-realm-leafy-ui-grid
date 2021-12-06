@@ -1,18 +1,5 @@
 [
     {
-        "name": "resetPassword",
-        "private": true
-    },
-    {
-        "name": "updateTotalBalance",
-        "private": true,
-        "run_as_system": true
-    },
-    {
-        "name": "getGridData",
-        "private": false
-    },
-    {
         "name": "getGroupStage",
         "private": true,
         "run_as_system": true
@@ -26,7 +13,20 @@
         "private": true
     },
     {
+        "name": "resetPassword",
+        "private": true
+    },
+    {
+        "name": "updateTotalBalance",
+        "private": true,
+        "run_as_system": true
+    },
+    {
         "name": "createUserData",
         "private": true
+    },
+    {
+        "name": "getGridData",
+        "private": false
     }
 ]
