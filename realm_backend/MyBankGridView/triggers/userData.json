@@ -1,0 +1,20 @@
+{
+    "id": "61ae61720a1ad5187f330e47",
+    "name": "userData",
+    "type": "AUTHENTICATION",
+    "config": {
+        "operation_type": "CREATE",
+        "providers": [
+            "oauth2-google",
+            "custom-token"
+        ]
+    },
+    "disabled": false,
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "createUserData"
+            }
+        }
+    }
+}
