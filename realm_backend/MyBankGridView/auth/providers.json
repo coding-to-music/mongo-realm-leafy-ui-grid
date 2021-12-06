@@ -33,7 +33,7 @@
             {
                 "required": false,
                 "name": "email",
-                "field_name": "name"
+                "field_name": "email"
             },
             {
                 "required": false,
