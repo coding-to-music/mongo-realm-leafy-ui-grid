@@ -5,6 +5,7 @@ import TextInput from "@leafygreen-ui/text-input";
 import Button from "@leafygreen-ui/button";
 import { uiColors } from "@leafygreen-ui/palette";
 import { useMsal } from "@azure/msal-react";
+import { GoogleLoginButton, MicrosoftLoginButton } from "react-social-login-buttons";
 
 import { useRealmApp } from "../RealmApp";
 import Container from "../Components/Container";
@@ -107,10 +108,11 @@ const LoginScreen = () => {
                 <LoginFormRow>
                     <Button variant="primary" onClick={() => handleLogin()}>Login</Button>
                 </LoginFormRow>           
-                
                 <LoginFormRow>
-                    <Button variant="primary" onClick={() => handleSSOLogin()}>SSO Microsoft</Button>
-                    <Button variant="primary" onClick={() => handleSSOGoogleLogin()}>SSO Google</Button>
+                    <MicrosoftLoginButton onClick={() => handleSSOLogin()} />
+                </LoginFormRow>
+                <LoginFormRow>
+                    <GoogleLoginButton onClick={() => handleSSOGoogleLogin()} />
                 </LoginFormRow>
                 </>
             )}
