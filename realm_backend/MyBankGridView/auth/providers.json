@@ -97,7 +97,8 @@
             }
         ],
         "redirect_uris": [
-            "https://mybankgridview-ahggo.mongodbstitch.com/"
+            "https://mybankgridview-ahggo.mongodbstitch.com/",
+            "http://localhost:3000"
         ]
     }
 }
