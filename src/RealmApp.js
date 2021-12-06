@@ -29,6 +29,11 @@ export const RealmAppProvider = ({ appId, children }) => {
         setCurrentUser(app.currentUser);
     }
 
+    async function logInGoogle() {
+        await app.logIn(Realm.Credentials.google("https://mybankgridview-ahggo.mongodbstitch.com/google_login"));
+        setCurrentUser(app.currentUser);
+    }
+
     async function logIn(credentials) {
         await app.logIn(credentials);
         // If successful, app.currentUser is the user that just logged in
@@ -43,7 +48,7 @@ export const RealmAppProvider = ({ appId, children }) => {
         setCurrentUser(app.currentUser);
     }
 
-    const wrapped = { ...app, currentUser, logIn, logInJwt, logOut };
+    const wrapped = { ...app, currentUser, logIn, logInJwt, logInGoogle, logOut };
 
     return (
         <RealmAppContext.Provider value={wrapped}>

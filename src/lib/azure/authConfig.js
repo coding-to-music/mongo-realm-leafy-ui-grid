@@ -11,13 +11,12 @@ import { LogLevel } from "@azure/msal-browser";
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md 
  */
 export const msalConfig = {
-    //ClemensRealmApp
     auth: {
         clientId: process.env.REACT_APP_APPID,
         authority: `https://login.microsoftonline.com/${process.env.REACT_APP_TENANTID}`,
-        redirectUri: "http://localhost:3000/",
-        postLogoutRedirectUri: "http://localhost:3000/",
-        mainWindowRedirectUri: "http://localhost:3000/"
+        redirectUri: "https://mybankgridview-ahggo.mongodbstitch.com/",
+        postLogoutRedirectUri: "https://mybankgridview-ahggo.mongodbstitch.com/",
+        mainWindowRedirectUri: "https://mybankgridview-ahggo.mongodbstitch.com/"
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored

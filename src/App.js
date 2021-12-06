@@ -2,9 +2,11 @@ import React from "react";
 import { RealmAppProvider, useRealmApp } from "./RealmApp";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
 import LoginScreen from "./Containers/LoginScreen";
+import GoogleLogin from "./Containers/GoogleLogin";
 import Grid from "./Containers/Grid";
 import { msalConfig } from "./lib/azure/authConfig";
 import RealmApolloProvider from "./lib/graphql/apolloClient";
@@ -22,11 +24,18 @@ const App = () => {
   return (
     <RealmAppProvider appId={APP_ID}>
       <MsalProvider instance={msalInstance}>
-        <RequireLoggedInUser>
-          <RealmApolloProvider>
-            <Grid />
-          </RealmApolloProvider>
-        </RequireLoggedInUser>
+        <BrowserRouter>
+            <Routes>
+            <Route path="/google_login" element={<GoogleLogin />} />
+            <Route path="/" element={
+              <RequireLoggedInUser>
+                <RealmApolloProvider>
+                  <Grid />
+              </RealmApolloProvider>
+            </RequireLoggedInUser>
+            } />
+          </Routes>
+        </BrowserRouter>
       </MsalProvider>
     </RealmAppProvider>
 

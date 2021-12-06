@@ -14,8 +14,8 @@ import Loading from "../Components/Loading";
 
 const LoginScreen = () => {
     const app = useRealmApp();
-    const [email, setEmail] = React.useState("philip@eschenbacher.ch");
-    const [password, setPassword] = React.useState("Passw0rd");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
     const [error, setError] = React.useState({});
     const [isLoggingIn, setIsLoggingIn] = React.useState(false);
     const { instance, accounts } = useMsal();
@@ -42,6 +42,15 @@ const LoginScreen = () => {
     
             jwt = await JSON.stringify(jwt.accessToken).slice(1,-1);
             await app.logInJwt(jwt);
+        } catch (err) {
+            console.log(err);
+            handleAuthenticationError(err, setError);
+        }
+    }
+
+    const handleSSOGoogleLogin = async () => {
+        try {
+            await app.logInGoogle();
         } catch (err) {
             console.log(err);
             handleAuthenticationError(err, setError);
@@ -100,10 +109,9 @@ const LoginScreen = () => {
                 </LoginFormRow>           
                 
                 <LoginFormRow>
-                    <Button variant="primary" onClick={() => handleSSOLogin()}>SSO</Button>
+                    <Button variant="primary" onClick={() => handleSSOLogin()}>SSO Microsoft</Button>
+                    <Button variant="primary" onClick={() => handleSSOGoogleLogin()}>SSO Google</Button>
                 </LoginFormRow>
-                
-
                 </>
             )}
         </Container>
@@ -129,22 +137,4 @@ const LoginHeading = styled.h1`
 
 const LoginFormRow = styled.div`
   margin-bottom: 16px;
-`;
-
-const ToggleContainer = styled.div`
-  margin-top: 8px;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-`;
-
-const ToggleText = styled.span`
-  line-height: 18px;
-`;
-
-const ToggleLink = styled.button`
-  background: none;
-  border: none;
-  font-size: 12px;
-  color: ${uiColors.green.dark2};
 `;
