@@ -30,7 +30,7 @@ export const RealmAppProvider = ({ appId, children }) => {
     }
 
     async function logInGoogle() {
-        await app.logIn(Realm.Credentials.google("https://mybankgridview-ahggo.mongodbstitch.com/google_login"));
+        await app.logIn(Realm.Credentials.google(`${process.env.REACT_APP_REDIRECT}/google_login`));
         setCurrentUser(app.currentUser);
     }
 

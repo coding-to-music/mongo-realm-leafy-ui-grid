@@ -14,9 +14,9 @@ export const msalConfig = {
     auth: {
         clientId: process.env.REACT_APP_APPID,
         authority: `https://login.microsoftonline.com/${process.env.REACT_APP_TENANTID}`,
-        redirectUri: "https://mybankgridview-ahggo.mongodbstitch.com/",
-        postLogoutRedirectUri: "https://mybankgridview-ahggo.mongodbstitch.com/",
-        mainWindowRedirectUri: "https://mybankgridview-ahggo.mongodbstitch.com/"
+        redirectUri: process.env.REACT_APP_REDIRECT,
+        postLogoutRedirectUri: process.env.REACT_APP_REDIRECT,
+        mainWindowRedirectUri: process.env.REACT_APP_REDIRECT
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
