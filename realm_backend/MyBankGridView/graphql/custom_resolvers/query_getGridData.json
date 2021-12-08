@@ -29,8 +29,46 @@
                     }
                 }
             },
+            "sortModel": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "object",
+                    "properties": {
+                        "colId": {
+                            "bsonType": "string"
+                        },
+                        "sort": {
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "title": "sort"
+                        }
+                    }
+                }
+            },
             "startRow": {
                 "bsonType": "int"
+            },
+            "valueCols": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "object",
+                    "properties": {
+                        "aggFunc": {
+                            "bsonType": "string"
+                        },
+                        "displayName": {
+                            "bsonType": "string"
+                        },
+                        "field": {
+                            "bsonType": "string"
+                        },
+                        "id": {
+                            "bsonType": "string"
+                        }
+                    }
+                }
             }
         },
         "title": "GridQueryModel",
@@ -48,9 +86,6 @@
                 "items": {
                     "bsonType": "object",
                     "properties": {
-                        "_id": {
-                            "bsonType": "string"
-                        },
                         "accounts": {
                             "bsonType": "object",
                             "properties": {
@@ -183,6 +218,9 @@
                                     "bsonType": "int"
                                 }
                             }
+                        },
+                        "customerId": {
+                            "bsonType": "string"
                         },
                         "firstName": {
                             "bsonType": "string"

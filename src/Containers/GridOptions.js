@@ -1,14 +1,14 @@
 const columnTypes = {
+    detail: {
+        enableRowGroup: false,
+        enablePivot: false
+    },
     dimension: {
         enableRowGroup: true,
         enablePivot: true
     },
     valueColumn: {
-        width: 300,
         aggFunc: "sum",
-        cellClass: "number",
-        enableValue: true,
-        allowedAggFuncs: ['avg', 'sum', 'min', 'max', 'count']
     }
 };
 
@@ -22,15 +22,23 @@ const sideBar = {
     ]
 }
 
+const rowGroupPanelShow = "always";
+
+const groupDisplayType = "multipleColumns";
+
 const defaultColDef = {
-    sortable: false,
+    sortable: true,
     resizable: true
+}
+
+const onSortChanged = (params) => {
+    params.api.refreshServerSideStore({purge: true});
 }
 
 const rowSelection = "single";
 const rowModelType = "serverSide";
 const serverSideStoreType = "partial";
-const cacheBlockSize = 200;
+const cacheBlockSize = 100;
 
 export default {
     columnTypes,
@@ -39,5 +47,8 @@ export default {
     rowModelType,
     serverSideStoreType,
     cacheBlockSize,
+    rowGroupPanelShow,
+    groupDisplayType,
+    onSortChanged
     //sideBar
 }
