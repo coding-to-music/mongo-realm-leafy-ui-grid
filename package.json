@@ -33,7 +33,7 @@
     "build": "react-scripts build && rm -rf realm_backend/MyBankGridView/hosting/files/* && cp -rv build/* realm_backend/MyBankGridView/hosting/files/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "realm:init": "npm run deploy && cd ./realm_backend && realm-cli app init mongo-realm-leafy-ui-grid",
+    "realm:init": "npm run deploy && cd ./realm_backend && realm-cli app init",
     "vercel": "npm run deploy && vercel --prod",
     "mongohost": "npm run deploy && npm run build && cp -a ./build/ ./hosting/files && realm-cli push --remote=tasktracker-bmumi --include-hosting",
     "deploy": "git add . && git commit -m Build && git push",
