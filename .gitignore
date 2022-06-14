@@ -27,3 +27,4 @@ yarn-error.log*
 #realm
 #/realm_backend/MyBankGridView/realm_config.json
 
+.vercel
