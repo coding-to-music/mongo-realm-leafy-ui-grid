@@ -1,6 +1,8 @@
 {
     "config_version": 20210101,
+    "app_id": "mongo-realm-leafy-ui-grid-fnyoq",
     "name": "mongo-realm-leafy-ui-grid",
     "location": "US-VA",
-    "deployment_model": "GLOBAL"
+    "deployment_model": "GLOBAL",
+    "environment": "production"
 }
