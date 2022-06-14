@@ -1,8 +1,8 @@
 {
-    "app_id": "mybankgridview_p-awtkl",
-    "config_version": 20210101,
-    "name": "MyBankGridView_P",
-    "location": "DE-FF",
-    "deployment_model": "LOCAL",
-    "environment": "production"
+  "config_version": 20210101,
+  "app_id": "mongo-realm-leafy-ui-grid-fnyoq",
+  "name": "mongo-realm-leafy-ui-grid",
+  "location": "US-VA",
+  "deployment_model": "GLOBAL",
+  "environment": "production"
 }

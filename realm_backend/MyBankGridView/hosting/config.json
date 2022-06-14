@@ -1,6 +1,6 @@
 {
-    "enabled": true,
-    "app_default_domain": "mybankgridview-ahggo.mongodbstitch.com",
-    "default_error_path": "/index.html",
-    "default_error_code": "200"
+  "enabled": true,
+  "app_default_domain": "mongo-realm-leafy-ui-grid.vercel.app",
+  "default_error_path": "/index.html",
+  "default_error_code": "200"
 }
