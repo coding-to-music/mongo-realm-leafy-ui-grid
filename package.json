@@ -1,5 +1,5 @@
 {
-  "name": "mongodb_realm_grid",
+  "name": "mongo-realm-leafy-ui-grid",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -32,7 +32,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build && rm -rf realm_backend/MyBankGridView/hosting/files/* && cp -rv build/* realm_backend/MyBankGridView/hosting/files/",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "vercel": "npm run deploy && vercel --prod",
+    "mongohost": "npm run deploy && npm run build && cp -a ./build/ ./hosting/files && realm-cli push --remote=tasktracker-bmumi --include-hosting",
+    "deploy": "git add . && git commit -m Build && git push",
+    "deploy:backend": "npm run deploy && cd ./realm_backend && realm-cli push"
   },
   "eslintConfig": {
     "extends": [

@@ -1,5 +1,37 @@
+# mongo-realm-leafy-ui-grid
+
+Full fledged implementation of many MongoDB Atlas features represented in a grid application
+
+# 🚀 Javascript full-stack 🚀
+
+https://github.com/coding-to-music/mongo-realm-leafy-ui-grid
+
+https://mongo-realm-leafy-ui-grid.vercel.app
+
+From / By Philip Eschenbacher https://github.com/phil2211
+
+https://github.com/phil2211/mongodb_realm_grid
+
+## Environment variables:
+
+```java
+
+```
+
+## GitHub
+
+```java
+git init
+git add .
+git remote remove origin
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:coding-to-music/mongo-realm-leafy-ui-grid.git
+git push -u origin main
+```
 
 # mongodb_realm_grid
+
 Full fledged implementation of many MongoDB Atlas features represented in a grid application
 
 # Getting Started with Create React App
