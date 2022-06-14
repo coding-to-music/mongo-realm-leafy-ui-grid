@@ -1,8 +1,8 @@
 {
-    "app_id": "mybankgridview-ahggo",
-    "config_version": 20210101,
-    "name": "MyBankGridView",
-    "location": "DE-FF",
-    "deployment_model": "LOCAL",
-    "environment": "development"
+  "app_id": "realm-leafy-ui-grid-fnyoq",
+  "config_version": 20210101,
+  "name": "realm-leafy-ui-grid",
+  "location": "US-VA",
+  "deployment_model": "LOCAL",
+  "environment": "development"
 }
